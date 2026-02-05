@@ -1,13 +1,28 @@
 <script>
 const noBtn = document.getElementById("no");
 
-noBtn.addEventListener("mouseover", () => {
+// move button randomly
+function moveNo() {
   const x = Math.random() * 300 - 150;
   const y = Math.random() * 200 - 100;
   noBtn.style.transform = `translate(${x}px, ${y}px)`;
+}
+
+// PC mouse
+noBtn.addEventListener("mouseenter", moveNo);
+
+// Touch devices (phones)
+noBtn.addEventListener("touchstart", (e) => {
+  e.preventDefault();
+  moveNo();
 });
 
-// simple signature generator (based on name)
+// Extra safety: screen tap near button
+document.addEventListener("touchmove", () => {
+  moveNo();
+});
+
+// signature generator
 function signature(name) {
   let hash = 0;
   for (let i = 0; i < name.length; i++) {
@@ -34,97 +49,6 @@ function yes() {
       🕒 ${now}<br>
       🔐 Signature: <strong>${sign}</strong>
     </p>
-
-    <span style="display:none" data-owner="Danson-Original-Valentine"></span>
   `;
 }
 </script>
-<script>
-const noBtn = document.getElementById("no");
-
-noBtn.addEventListener("mouseover", () => {
-  const x = Math.random() * 300 - 150;
-  const y = Math.random() * 200 - 100;
-  noBtn.style.transform = `translate(${x}px, ${y}px)`;
-});
-
-function yes() {
-  document.getElementById("box").innerHTML = `
-    <h2>I love you ❤️<br>Happy Valentine 💐</h2>
-    <p style="font-size:18px;color:#b30059;margin-top:10px;">
-      — <strong>Danson</strong> 💌
-    </p>
-    <img src="image.png" alt="Love Image">
-    <span style="display:none" data-owner="Danson-Original-Valentine"></span>
-  `;
-}
-</script>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>💖 Valentine</title>
-<style>
-body {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: Arial;
-  background: #ffe6eb;
-}
-
-#box {
-  text-align: center;
-}
-
-button {
-  padding: 12px 25px;
-  font-size: 18px;
-  margin: 10px;
-  cursor: pointer;
-}
-
-#no {
-  position: relative;
-}
-
-img {
-  max-width: 300px;
-  border-radius: 15px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-}
-
-h2 {
-  color: #e6005c;
-}
-</style>
-</head>
-
-<body>
-
-<div id="box">
-  <h2>Do you love me? 😊</h2>
-  <button onclick="yes()">Yes</button>
-  <button id="no">No</button>
-</div>
-
-<script>
-const noBtn = document.getElementById("no");
-
-noBtn.addEventListener("mouseover", () => {
-  const x = Math.random() * 300 - 150;
-  const y = Math.random() * 200 - 100;
-  noBtn.style.transform = `translate(${x}px, ${y}px)`;
-});
-
-function yes() {
-  document.getElementById("box").innerHTML = `
-    <h2>I love you ❤️<br>Happy Valentine 💐</h2>
-    <img src="image.png" alt="Love Image">
-  `;
-}
-</script>
-
-</body>
-</html>
